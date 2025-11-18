@@ -4,13 +4,13 @@ import { useSteps, Step, Steps as Stepper } from "chakra-ui-steps"
 import { CgCheck } from "react-icons/cg"
 
 import { useRsi } from "../hooks/useRsi"
-import { useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { steps, stepTypeToStepIndex, stepIndexToStepType } from "../utils/steps"
 
 const CheckIcon = ({ color }: { color: string }) => <CgCheck size="36px" color={color} />
 
 export const Steps = () => {
-  const { initialStepState, translations, isNavigationEnabled } = useRsi()
+  const { initialStepState, translations, isNavigationEnabled, onStepChange } = useRsi()
 
   const initialStep = stepTypeToStepIndex(initialStepState?.type)
 
@@ -41,6 +41,12 @@ export const Steps = () => {
     setState(v)
     v.type !== StepType.selectSheet && nextStep()
   }
+
+  useEffect(() => {
+    if (onStepChange) {
+      onStepChange(state)
+    }
+  }, [state, onStepChange])
 
   return (
     <>
