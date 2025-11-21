@@ -50,6 +50,9 @@ export type RsiProps<T extends string> = {
   // Use for right-to-left (RTL) support
   rtl?: boolean
   onStepChange?: (state: StepState) => void
+  // Expose MatchColumnsStep hooks to consuming apps
+  matchColumnsRegisterSetColumns?: (setter: (cols: Columns<T>) => void) => void
+  matchColumnsOnColumnsChange?: (cols: Columns<T>) => void
 }
 
 export type RawData = Array<string | undefined>

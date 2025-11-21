@@ -57,6 +57,8 @@ export const UploadFlow = ({ state, onNext, onBack }: Props) => {
     fields,
     rowHook,
     tableHook,
+    matchColumnsRegisterSetColumns,
+    matchColumnsOnColumnsChange,
   } = useRsi()
   const [uploadedFile, setUploadedFile] = useState<File | null>(null)
   const toast = useToast()
@@ -159,6 +161,8 @@ export const UploadFlow = ({ state, onNext, onBack }: Props) => {
               errorToast((e as Error).message)
             }
           }}
+          registerSetColumns={matchColumnsRegisterSetColumns}
+          onColumnsChange={matchColumnsOnColumnsChange}
           onBack={onBack}
         />
       )

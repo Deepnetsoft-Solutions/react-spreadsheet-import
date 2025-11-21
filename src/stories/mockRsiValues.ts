@@ -1,7 +1,7 @@
 import type { RsiProps } from "../types"
 import { defaultRSIProps } from "../ReactSpreadsheetImport"
 
-const fields = [
+export const fields = [
   {
     label: "Name",
     key: "name",
