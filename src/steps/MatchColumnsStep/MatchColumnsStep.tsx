@@ -18,6 +18,8 @@ export type MatchColumnsProps<T extends string> = {
   headerValues: RawData
   onContinue: (data: any[], rawData: RawData[], columns: Columns<T>) => void
   onBack?: () => void
+  registerSetColumns?: (setter: (cols: Columns<T>) => void) => void
+  onColumnsChange?: (cols: Columns<T>) => void
 }
 
 export enum ColumnType {
@@ -68,6 +70,8 @@ export const MatchColumnsStep = <T extends string>({
   headerValues,
   onContinue,
   onBack,
+  registerSetColumns,
+  onColumnsChange,
 }: MatchColumnsProps<T>) => {
   const toast = useToast()
   const dataExample = data.slice(0, 2)
@@ -77,6 +81,19 @@ export const MatchColumnsStep = <T extends string>({
     // Do not remove spread, it indexes empty array elements, otherwise map() skips over them
     ([...headerValues] as string[]).map((value, index) => ({ type: ColumnType.empty, index, header: value ?? "" })),
   )
+  useEffect(() => {
+    if (registerSetColumns) {
+      registerSetColumns((newCols) => {
+        console.log("setting localstorage cols", newCols)
+        setColumns(newCols)
+      })
+    }
+  }, [registerSetColumns])
+
+  useEffect(() => {
+    onColumnsChange?.(columns)
+  }, [columns, onColumnsChange])
+
   const [showUnmatchedFieldsAlert, setShowUnmatchedFieldsAlert] = useState(false)
 
   const onChange = useCallback(
