@@ -5,7 +5,7 @@ export const fields = [
   {
     label: "Name",
     key: "name",
-    alternateMatches: ["first name", "first"],
+    alternateMatches: [],
     fieldType: {
       type: "input",
     },
@@ -20,7 +20,7 @@ export const fields = [
   {
     label: "Surname",
     key: "surname",
-    alternateMatches: ["second name", "last name", "last"],
+    alternateMatches: [],
     fieldType: {
       type: "input",
     },
@@ -37,7 +37,7 @@ export const fields = [
   {
     label: "Age",
     key: "age",
-    alternateMatches: ["years"],
+    alternateMatches: [],
     fieldType: {
       type: "input",
     },
@@ -54,7 +54,7 @@ export const fields = [
   {
     label: "Team",
     key: "team",
-    alternateMatches: ["department"],
+    alternateMatches: [],
     fieldType: {
       type: "select",
       options: [
@@ -73,7 +73,7 @@ export const fields = [
   {
     label: "Is manager",
     key: "is_manager",
-    alternateMatches: ["manages"],
+    alternateMatches: [],
     fieldType: {
       type: "checkbox",
       booleanMatches: {},
@@ -91,7 +91,7 @@ export const mockRsiValues = mockComponentBehaviourForTypes({
     console.log(data.all.map((value) => value))
   },
   isOpen: true,
-  onClose: () => {},
+  onClose: () => { },
   // uploadStepHook: async (data) => {
   //   await new Promise((resolve) => {
   //     setTimeout(() => resolve(data), 4000)

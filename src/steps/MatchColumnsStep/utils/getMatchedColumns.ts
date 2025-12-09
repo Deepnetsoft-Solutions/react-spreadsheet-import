@@ -13,7 +13,18 @@ export const getMatchedColumns = <T extends string>(
   autoMapSelectValues?: boolean,
 ) =>
   columns.reduce<Column<T>[]>((arr, column) => {
-    const autoMatch = findMatch(column.header, fields, autoMapDistance)
+    const defaultMatch = fields.find((field) => field.defaultColumnIndex === column.index)
+
+    if (defaultMatch) {
+      return [...arr, setColumn(column, defaultMatch as Field<T>, data, autoMapSelectValues)]
+    }
+
+    const autoMatch = findMatch(
+      column.header,
+      fields.filter((field) => field.defaultColumnIndex === undefined),
+      autoMapDistance,
+    )
+
     if (autoMatch) {
       const field = fields.find((field) => field.key === autoMatch) as Field<T>
       const duplicateIndex = arr.findIndex((column) => "value" in column && column.value === field.key)

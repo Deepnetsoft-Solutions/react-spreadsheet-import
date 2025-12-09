@@ -77,6 +77,8 @@ export type Field<T extends string> = {
   fieldType: Checkbox | Select | Input
   // UI-facing values shown to user as field examples pre-upload phase
   example?: string
+  // Default column index to match this field to (persisted template mode)
+  defaultColumnIndex?: number
 }
 
 export type Checkbox = {
