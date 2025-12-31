@@ -29,7 +29,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/UgnisSoftware/react-spreadsheet-import.git"
+    "url": "https://github.com/Deepnetsoft-Solutions/react-spreadsheet-import.git"
   },
   "keywords": [
     "React",
